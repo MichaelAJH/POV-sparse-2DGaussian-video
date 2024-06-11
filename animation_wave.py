@@ -2,15 +2,15 @@ import cv2
 import numpy as np
 
 # Parameters
-width, height = 320, 320
+width, height = 640, 640
 center = (width // 2, height // 2)
-radius = 100
+radius = 200
 num_frames = 90
 fps = 30
 
 # Initialize video writer
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-out = cv2.VideoWriter('circular_rotating_wave.mp4', fourcc, fps, (width, height), False)
+out = cv2.VideoWriter('./data/wave/circular_wave.mp4', fourcc, fps, (width, height), False)
 
 def polar_to_cartesian(r, theta):
     x = int(r * np.cos(theta) + center[0])
@@ -19,9 +19,9 @@ def polar_to_cartesian(r, theta):
 
 def generate_wave_frame(frame_number):
     frame = np.zeros((height, width), dtype=np.uint8)
-    for angle in np.linspace(0, 2 * np.pi, 720, endpoint=False):
+    for angle in np.linspace(0, 2 * np.pi, 2880, endpoint=False):
         # Sine wave parameters
-        sine_value = np.sin(8*angle + 24*np.radians(frame_number)) * 30  # amplitude of the wave
+        sine_value = np.sin(6*angle + 16*np.radians(frame_number)) * 30  # amplitude of the wave
         point_r = radius + sine_value  # radius adjusted by sine value
         point_theta = angle  # angle around the circle
         

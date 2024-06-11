@@ -2,13 +2,13 @@ import cv2
 import numpy as np
 
 # Parameters
-width, height = 144, 144
-num_frames_per_shape = 10
+width, height = 640, 640
+num_frames_per_shape = 15
 fps = 30
 
 # Initialize video writer
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-out = cv2.VideoWriter('shape_transition.mp4', fourcc, fps, (width, height), False)
+out = cv2.VideoWriter('./data/polygons/shape_transition.mp4', fourcc, fps, (width, height), False)
 
 def generate_polygon_vertices(sides, radius=width//3, center=(width//2, height//2)):
     return [(center[0] + radius * np.cos(2 * np.pi * i / sides), center[1] + radius * np.sin(2 * np.pi * i / sides)) for i in range(sides)]
